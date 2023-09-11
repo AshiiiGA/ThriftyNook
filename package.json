@@ -1,0 +1,23 @@
+{
+  "name": "sit725-2023-t2-prac2",
+  "version": "1.0.0",
+  "description": "sit725-2023-t2-prac2",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshiiiGA/ThriftyNook.git"
+  },
+  "author": "Ashi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AshiiiGA/ThriftyNook/issues"
+  },
+  "homepage": "https://github.com/AshiiiGA/ThriftyNook#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
