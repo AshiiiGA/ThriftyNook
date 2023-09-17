@@ -7,6 +7,12 @@ const session = require("express-session");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//database connection
+mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on("error", (error) => console.log(error));
+db.once("open", ()=> console.log("connected to the database!"));
+
 app.use(express.static('public'));
 //middelwares
 app.use(express.urlencoded({extended: false}));

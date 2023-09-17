@@ -1,10 +1,10 @@
 /* Change the background color of the navigation bar */
-nav.navbar.bg-dark {
+nav.navbar.bg-dark, nav.navbar.navbar-light {
     background-color: #EBF7F3 !important;
 }
 
 /* Change the text color of the navigation links */
-nav.navbar a.nav-link {
+nav.navbar a.nav-link, .btn.btn-outline-success {
     color: #364144 !important;
 }
 
@@ -15,22 +15,22 @@ nav.navbar a.nav-link {
   
   /* Style for the navigation links when hovered */
   .nav-link:hover {
-    color: #F2A488; /* Change to your desired hover color */
-    transform: scale(1.1); /* Increase size on hover (adjust as needed) */
+    color: #F2A488; 
+    transform: scale(1.1); 
   }
   
   /* Style for the navigation links when clicked */
   .nav-link:active {
-    color: #FF5733; /* Change to your desired active (clicked) color */
+    color: #FF5733; 
   }
 
   /* Add margin-right to the Login link to create space */
 .login-link {
-    margin-right: 20px; /* Adjust the value to control the spacing */
+    margin-right: 20px; 
   }
-  /* Style for the button in its normal state */
+ 
 /* Style for the button in its normal state */
-.btn-primary.custom-btn {
+.btn-primary.custom-btn, .btn.btn-outline-success{
     background-color: #F2A488 !important;
     border-color: #F2A488 !important;
   }
@@ -39,5 +39,10 @@ nav.navbar a.nav-link {
   .btn-primary.custom-btn:hover {
     background-color: #518678   !important;
     border-color: #518678   !important;
+  }
+  
+/* Custom width for the search box */
+.custom-search-box {
+    width: 500px !important; 
   }
   
