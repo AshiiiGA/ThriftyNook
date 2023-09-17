@@ -7,6 +7,7 @@ const session = require("express-session");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static('public'));
 //middelwares
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());

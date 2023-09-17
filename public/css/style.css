@@ -1,0 +1,43 @@
+/* Change the background color of the navigation bar */
+nav.navbar.bg-dark {
+    background-color: #EBF7F3 !important;
+}
+
+/* Change the text color of the navigation links */
+nav.navbar a.nav-link {
+    color: #364144 !important;
+}
+
+/* Define a transition for smooth animation */
+.nav-link {
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Style for the navigation links when hovered */
+  .nav-link:hover {
+    color: #F2A488; /* Change to your desired hover color */
+    transform: scale(1.1); /* Increase size on hover (adjust as needed) */
+  }
+  
+  /* Style for the navigation links when clicked */
+  .nav-link:active {
+    color: #FF5733; /* Change to your desired active (clicked) color */
+  }
+
+  /* Add margin-right to the Login link to create space */
+.login-link {
+    margin-right: 20px; /* Adjust the value to control the spacing */
+  }
+  /* Style for the button in its normal state */
+/* Style for the button in its normal state */
+.btn-primary.custom-btn {
+    background-color: #F2A488 !important;
+    border-color: #F2A488 !important;
+  }
+  
+  /* Style for the button when hovered */
+  .btn-primary.custom-btn:hover {
+    background-color: #518678   !important;
+    border-color: #518678   !important;
+  }
+  
