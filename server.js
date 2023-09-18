@@ -14,6 +14,7 @@ db.on("error", (error) => console.log(error));
 db.once("open", ()=> console.log("connected to the database!"));
 
 app.use(express.static('public'));
+
 //middelwares
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
