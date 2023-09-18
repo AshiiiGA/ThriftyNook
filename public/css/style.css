@@ -1,0 +1,48 @@
+/* Change the background color of the navigation bar */
+nav.navbar.bg-dark, nav.navbar.navbar-light {
+    background-color: #EBF7F3 !important;
+}
+
+/* Change the text color of the navigation links */
+nav.navbar a.nav-link, .btn.btn-outline-success {
+    color: #364144 !important;
+}
+
+/* Define a transition for smooth animation */
+.nav-link {
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Style for the navigation links when hovered */
+  .nav-link:hover {
+    color: #F2A488; 
+    transform: scale(1.1); 
+  }
+  
+  /* Style for the navigation links when clicked */
+  .nav-link:active {
+    color: #FF5733; 
+  }
+
+  /* Add margin-right to the Login link to create space */
+.login-link {
+    margin-right: 20px; 
+  }
+ 
+/* Style for the button in its normal state */
+.btn-primary.custom-btn, .btn.btn-outline-success{
+    background-color: #F2A488 !important;
+    border-color: #F2A488 !important;
+  }
+  
+  /* Style for the button when hovered */
+  .btn-primary.custom-btn:hover {
+    background-color: #518678   !important;
+    border-color: #518678   !important;
+  }
+  
+/* Custom width for the search box */
+.custom-search-box {
+    width: 500px !important; 
+  }
+  
