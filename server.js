@@ -20,8 +20,7 @@ db.once("open", () => console.log("connected to the database!"));
 
 app.use(express.static("public"));
 
-//add furniture route
-// Use /search route for rendering and /api/search for API routes
+// Use /search route for rendering
 app.get("/search", async (req, res) => {
   try {
     // Fetch furniture data and pass it to the template
@@ -32,10 +31,8 @@ app.get("/search", async (req, res) => {
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
-
 // Use /api/search for API routes
 app.use("/api", furnitureRoutes);
-
 
 //middelwares
 app.use(express.urlencoded({ extended: false }));
