@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+.navbar h1 {
+  color: #f1356d;
+}
+.navbar .links {
+  margin-left: auto;
+}
+.navbar a {
+  margin-right: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #f1356d;
+}
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.container {
+    padding: 20px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: center; 
+}
+
+div.polaroid {
+  width: 400px;
+  height: fit-content;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  margin: 25px;
+}
+
+div.category-items {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.item-image:hover {
+  opacity: 0.3;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
