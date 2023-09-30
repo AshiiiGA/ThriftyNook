@@ -21,17 +21,21 @@ db.once("open", () => console.log("connected to the database!"));
 app.use(express.static("public"));
 
 //add furniture route
-app.use("/api", furnitureRoutes);
-app.get("/furniture", async (req, res) => {
+// Use /search route for rendering and /api/search for API routes
+app.get("/search", async (req, res) => {
   try {
     // Fetch furniture data and pass it to the template
     const furnitures = await furnitureModel.find();
-    res.render("furniture", { furnitures });
+    res.render("search", { furnitures });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
+
+// Use /api/search for API routes
+app.use("/api", furnitureRoutes);
+
 
 //middelwares
 app.use(express.urlencoded({ extended: false }));

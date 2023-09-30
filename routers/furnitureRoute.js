@@ -2,13 +2,13 @@ const router = require("express").Router();
 const Furniture = require("../models/furnitureModel");
 const items = require("../config/furniture.json");
 
-router.get("/furniture", async (req, res) => {
+router.get("/search", async (req, res) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const limit = parseInt(req.query.limit) || 5;
-    const search = req.query.search || "";
+    const keyword = req.query.keyword || "";
     let sort = req.query.sort || "posted";
-    let category = req.query.category || "All"; // Changed 'catergory' to 'category'
+    let category = req.query.category || "All"; 
 
     const categoryOptions = [
       "Chairs",
@@ -39,7 +39,7 @@ router.get("/furniture", async (req, res) => {
     }
 
     const furnitures = await Furniture.find({
-      summary: { $regex: search, $options: "i" }, // Changed 'name' to 'summary'
+      summary: { $regex: keyword, $options: "i" }, 
     })
       .where("category")
       .in([...category])
@@ -49,7 +49,7 @@ router.get("/furniture", async (req, res) => {
 
     const total = await Furniture.countDocuments({
       category: { $in: [...category] },
-      summary: { $regex: search, $options: "i" }, // Changed 'name' to 'summary'
+      summary: { $regex: keyword, $options: "i" }, 
     });
 
     const response = {
