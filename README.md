@@ -29,8 +29,9 @@ Follow these steps to set up the project:
 ## Configuration Setup
 
 4. **Create a .env file in the project directory to store your configuration variables. You will need to define the following variables in the .env file**
-   _DATABASE_URL: Replace this with the correct database connection string_
-   _PORT: Set the port number where the application will run_
+
+DATABASE_URL: Replace this with the correct database connection string
+PORT: Set the port number where the application will run
 
 Here's an example .env file:
 ```sh
