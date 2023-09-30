@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Listings</title>
+</head>
+<body>
+    <h1>Furniture Listings</h1>
+
+    <!-- Sorting Options -->
+    <form id="sort-form">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" name="sort">
+            <option value="posted,asc">Posted Date (Ascending)</option>
+            <option value="posted,desc">Posted Date (Descending)</option>
+            <!-- Add more sorting options as needed -->
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+
+    <!-- Furniture Listings -->
+    <ul id="furniture-list">
+        <% furnitures.forEach((furniture) => { %>
+            <li>
+                <h3><%= furniture.summary %></h3>
+                <p>Description: <%= furniture.description %></p>
+                <p>Location: <%= furniture.location %></p>
+                <p>Category: <%= furniture.category %></p>
+                <p>Material: <%= furniture.material %></p>
+                <p>Price: <%= furniture.price %></p>
+                <p>Posted: <%= furniture.posted %></p>
+            </li>
+        <% }); %>
+    </ul>
+
+    <script>
+        // JavaScript for handling form submission and updating the list
+        const sortForm = document.getElementById('sort-form');
+        const furnitureList = document.getElementById('furniture-list');
+
+        sortForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(sortForm);
+            const sortValue = formData.get('sort');
+            // Perform an AJAX request to your server with the sortValue and update the furniture list
+            // Example: Use fetch() to send a GET request to your server's API endpoint with the sortValue
+            // Update the furniture list with the sorted data
+            // You can also use other JavaScript frameworks like Axios for AJAX requests
+        });
+    </script>
+</body>
+</html>
