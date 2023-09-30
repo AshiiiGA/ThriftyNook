@@ -1,0 +1,192 @@
+[
+  {
+    "summary": "Elegant Dining Table Set",
+    "description": "A beautiful dining table set with six chairs, made of solid wood.",
+    "location": "New York, NY",
+    "category": "Tables",
+    "material": "Wood",
+    "price": 499.99,
+    "image": "https://example.com/dining-table.jpg",
+    "posted": "2023-09-15"
+  },
+  {
+    "summary": "Comfy Leather Sofa",
+    "description": "A comfortable leather sofa with reclining seats. Like new condition.",
+    "location": "Los Angeles, CA",
+    "category": "Sofas",
+    "material": "Leather",
+    "price": 899.99,
+    "image": "https://example.com/leather-sofa.jpg",
+    "posted": "2023-09-10"
+  },
+  {
+    "summary": "Vintage Oak Bookshelf",
+    "description": "A vintage oak bookshelf with ornate carvings. Great for displaying books and decor.",
+    "location": "Chicago, IL",
+    "category": "Storage",
+    "material": "Oak",
+    "price": 299.99,
+    "image": "https://example.com/vintage-bookshelf.jpg",
+    "posted": "2023-09-05"
+  },
+  {
+    "summary": "Cozy Sectional Sofa",
+    "description": "A cozy sectional sofa with soft cushions. Perfect for family gatherings.",
+    "location": "San Francisco, CA",
+    "category": "Sofas",
+    "material": "Fabric",
+    "price": 799.99,
+    "image": "https://example.com/sectional-sofa.jpg",
+    "posted": "2023-09-01"
+  },
+  {
+    "summary": "Retro Leather Lounge Chair",
+    "description": "A retro leather lounge chair from the 1970s.",
+    "location": "Miami, FL",
+    "category": "Chairs",
+    "material": "Leather",
+    "price": 299.99,
+    "image": "https://example.com/retro-lounge-chair.jpg",
+    "posted": "2023-08-25"
+  },
+  {
+    "summary": "Farmhouse Dining Table",
+    "description": "A farmhouse-style dining table with a rustic look.",
+    "location": "Los Angeles, CA",
+    "category": "Tables",
+    "material": "Wood",
+    "price": 449.99,
+    "image": "https://example.com/farmhouse-dining-table.jpg",
+    "posted": "2023-08-20"
+  },
+  {
+    "summary": "Elegant Chaise Lounge",
+    "description": "An elegant chaise lounge with velvet upholstery.",
+    "location": "Chicago, IL",
+    "category": "Chairs",
+    "material": "Velvet",
+    "price": 349.99,
+    "image": "https://example.com/chaise-lounge.jpg",
+    "posted": "2023-08-15"
+  },
+  {
+    "summary": "Vintage Roll-Top Desk",
+    "description": "A vintage roll-top desk with multiple compartments.",
+    "location": "San Francisco, CA",
+    "category": "Desks",
+    "material": "Wood",
+    "price": 499.99,
+    "image": "https://example.com/vintage-roll-top-desk.jpg",
+    "posted": "2023-08-10"
+  },
+  {
+    "summary": "Rattan Hanging Chair",
+    "description": "A rattan hanging chair for indoor or outdoor use.",
+    "location": "New York, NY",
+    "category": "Outdoor Furniture",
+    "material": "Rattan",
+    "price": 199.99,
+    "image": "https://example.com/rattan-hanging-chair.jpg",
+    "posted": "2023-08-05"
+  },
+  {
+    "summary": "Kids' Bunk Bed",
+    "description": "A kids' bunk bed with a slide and built-in storage.",
+    "location": "Dallas, TX",
+    "category": "Kids' Furniture",
+    "material": "Wood",
+    "price": 399.99,
+    "image": "https://example.com/kids-bunk-bed.jpg",
+    "posted": "2023-08-01"
+  },
+  {
+    "summary": "Vintage Brass Floor Lamp",
+    "description": "A vintage brass floor lamp with a unique design.",
+    "location": "Philadelphia, PA",
+    "category": "Home Decor",
+    "material": "Brass",
+    "price": 149.99,
+    "image": "https://example.com/brass-floor-lamp.jpg",
+    "posted": "2023-07-25"
+  },
+  {
+    "summary": "Retro Wooden Rocking Chair",
+    "description": "A retro wooden rocking chair with a classic design.",
+    "location": "Houston, TX",
+    "category": "Chairs",
+    "material": "Wood",
+    "price": 199.99,
+    "image": "https://example.com/retro-rocking-chair.jpg",
+    "posted": "2023-07-20"
+  },
+  {
+    "summary": "Mid-Century Modern Sideboard",
+    "description": "A mid-century modern sideboard with clean lines and ample storage.",
+    "location": "Portland, OR",
+    "category": "Storage",
+    "material": "Wood",
+    "price": 449.99,
+    "image": "https://example.com/sideboard.jpg",
+    "posted": "2023-07-15"
+  },
+  {
+    "summary": "Bar Height Dining Set",
+    "description": "A bar height dining set with stools. Ideal for small spaces.",
+    "location": "Houston, TX",
+    "category": "Kitchen Furniture",
+    "material": "Wood",
+    "price": 299.99,
+    "image": "https://example.com/bar-height-dining-set.jpg",
+    "posted": "2023-07-10"
+  },
+  {
+    "summary": "Vintage Red Leather Couch",
+    "description": "A vintage red leather couch with a retro look.",
+    "location": "Boston, MA",
+    "category": "Sofas",
+    "material": "Leather",
+    "price": 599.99,
+    "image": "https://example.com/red-leather-couch.jpg",
+    "posted": "2023-07-05"
+  },
+  {
+    "summary": "Rustic Wooden Bed Frame",
+    "description": "A rustic wooden bed frame with a distressed finish.",
+    "location": "Seattle, WA",
+    "category": "Bedroom Furniture",
+    "material": "Wood",
+    "price": 349.99,
+    "image": "https://example.com/wooden-bed-frame.jpg",
+    "posted": "2023-07-01"
+  },
+  {
+    "summary": "Antique Oak Wardrobe",
+    "description": "An antique oak wardrobe with intricate carvings.",
+    "location": "Denver, CO",
+    "category": "Bedroom Furniture",
+    "material": "Oak",
+    "price": 799.99,
+    "image": "https://example.com/antique-oak-wardrobe.jpg",
+    "posted": "2023-06-25"
+  },
+  {
+    "summary": "Modern Glass Coffee Table",
+    "description": "A sleek and modern glass coffee table with chrome legs.",
+    "location": "Miami, FL",
+    "category": "Tables",
+    "material": "Glass",
+    "price": 199.99,
+    "image": "https://example.com/glass-coffee-table.jpg",
+    "posted": "2023-06-20"
+  },
+  {
+    "summary": "Classic Wingback Armchair",
+    "description": "A classic wingback armchair with tufted upholstery.",
+    "location": "Boston, MA",
+    "category": "Chairs",
+    "material": "Fabric",
+    "price": 199.99,
+    "image": "https://example.com/wingback-armchair.jpg",
+    "posted": "2023-06-15"
+  }
+]
