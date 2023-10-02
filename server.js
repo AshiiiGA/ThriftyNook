@@ -1,63 +1,34 @@
-//imports
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const session = require("express-session");
-const furnitureRoutes = require("./routers/furnitureRoute");
-const furnitureModel = require("./models/furnitureModel");
+const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose'); // Add mongoose
+const router = require('./routers/router');
+const path = require('path'); // Add this line
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const { PORT, DB_URI } = process.env; // Add DB_URI
 
-//database connection
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.on("error", (error) => console.log(error));
-db.once("open", () => console.log("connected to the database!"));
+db.on('error', (error) => console.log(error));
+db.once('open', () => console.log('Connected to the database!'));
 
-app.use(express.static("public"));
-
-// Use /search route for rendering
-app.get("/search", async (req, res) => {
-  try {
-    // Fetch furniture data and pass it to the template
-    const furnitures = await furnitureModel.find();
-    res.render("search", { furnitures });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
-  }
-});
-// Use /api/search for API routes
-app.use("/api", furnitureRoutes);
-
-//middelwares
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.use(
-  session({
-    secret: "my secret key",
-    saveUninitialized: true,
-    resave: false,
-  })
-);
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
 
-app.use((req, res, next) => {
-  res.locals.message = req.session.message;
-  delete req.session.message;
-  next();
-});
+// Set the views directory
+app.use(express.static('public'));
+app.set('views', path.join(__dirname, 'views'));
 
-// set template engine
-app.set("view engine", "ejs");
-
-//route prefix
-app.use("", require("./routers/routes"));
+app.use('/', router); // Use the router for handling routes
 
 app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
