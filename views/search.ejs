@@ -2,55 +2,76 @@
 <div class="container">
   <%- include('layouts/searchbar') %>
   <div class="container">
-    <div class="row my-4">
-      <div class="col-lg-12">
-        <div class="table-responsive">
-          <% const number = -1; // You can change this value as needed %>
-
-          <table class="table table-striped text-center">
-            <thead>
-              <tr class="table-dark">
-                <th>ID</th>
-                <th>Image</th>
-                <th>Summary</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>Material</th>
-                <th>Price</th>
-                <th>Posted</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if (furnitures.length > 0) { %> <%
-              furnitures.forEach((furniture, index) => { %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td>
-                  <img
-                    src="<%= furniture.image %>"
-                    width="50"
-                    class="img-thumbnail"
-                  />
-                </td>
-                <td><%= furniture.summary %></td>
-                <td><%= furniture.description %></td>
-                <td><%= furniture.location %></td>
-                <td><%= furniture.category %></td>
-                <td><%= furniture.material %></td>
-                <td>$<%= furniture.price %></td>
-                <td><%= furniture.posted.toDateString() %></td>
-              </tr>
-              <% }) %> <% } else { %>
-              <tr>
-                <td colspan="9"><h1>No data</h1></td>
-              </tr>
-              <% } %>
-            </tbody>
-          </table>
+    <div class="row">
+      <!-- Left Column for Categories -->
+      <div class="col-3">
+        <h1>Categories</h1>
+        <form>
+          <% categories.forEach(category => { %>
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" />
+              <span><%= category.name %></span>
+            </label>
+          </p>
+          <% }); %>
+        </form>
+      </div>
+      <!-- Right Column for Furniture Table -->
+      <div class="col-9">
+        <div class="container">
+          <div class="row my-4">
+            <div class="col-lg-12">
+              <div class="table-responsive">
+                <% const number = -1; // You can change this value as needed %>
+                <table class="table table-striped text-center">
+                  <thead>
+                    <tr class="table-dark">
+                      <th>ID</th>
+                      <th>Image</th>
+                      <th>Summary</th>
+                      <th>Description</th>
+                      <th>Location</th>
+                      <th>Category</th>
+                      <th>Material</th>
+                      <th>Price</th>
+                      <th>Posted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (furnitures.length > 0) { %> <%
+                    furnitures.forEach((furniture, index) => { %>
+                    <tr>
+                      <td><%= index + 1 %></td>
+                      <td>
+                        <img
+                          src="<%= furniture.image %>"
+                          width="50"
+                          class="img-thumbnail"
+                        />
+                      </td>
+                      <td><%= furniture.summary %></td>
+                      <td><%= furniture.description %></td>
+                      <td><%= furniture.location %></td>
+                      <td><%= furniture.category %></td>
+                      <td><%= furniture.material %></td>
+                      <td>$<%= furniture.price %></td>
+                      <td><%= furniture.posted.toDateString() %></td>
+                    </tr>
+                    <% }) %> <% } else { %>
+                    <tr>
+                      <td colspan="9"><h1>No data</h1></td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <%- include('layouts/footer') %>
