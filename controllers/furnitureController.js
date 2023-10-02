@@ -1,16 +1,14 @@
-const Furniture = require('../models/furnitureModel');
+const Furniture = require("../models/furnitureModel");
 
-// Function to search and list furniture
+// Function to search and list furniture with category filter
 async function searchFurniture(query) {
   try {
-    // Define search criteria here based on the query parameter
-    const searchCriteria = {}; //  customize this as needed
-
-    const furnitures = await Furniture.find(searchCriteria);
+    const categoryFilter = query.category ? { category: query.category } : {}; // Filter by category if provided
+    const furnitures = await Furniture.find(categoryFilter);
 
     return furnitures;
   } catch (err) {
-    console.error('Error in searchFurniture:', err);
+    console.error("Error in searchFurniture:", err);
     throw err;
   }
 }

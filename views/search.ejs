@@ -6,16 +6,30 @@
       <!-- Left Column for Categories -->
       <div class="col-3">
         <h1>Categories</h1>
-        <form>
+
+        <form id="categoryFilterForm">
           <% categories.forEach(category => { %>
-          <p>
-            <label>
-              <input type="checkbox" class="filled-in" />
-              <span><%= category.name %></span>
-            </label>
-          </p>
+            <p>
+              <label>
+                <input
+                  type="checkbox"
+                  class="filled-in"
+                  name="category"
+                  value="<%= category.name %>"
+                  <% if (query.category && query.category.includes(category.name)) { %>
+                    checked
+                  <% } %>
+                />
+                <span><%= category.name %></span>
+              </label>
+            </p>
           <% }); %>
+          <button class="btn waves-effect waves-light blue" type="submit">Filter</button>
+          <button class="btn waves-effect waves-light red" type="button" id="resetButton">Reset</button>
         </form>
+
+
+
       </div>
       <!-- Right Column for Furniture Table -->
       <div class="col-9">
@@ -28,7 +42,7 @@
                   <thead>
                     <tr class="table-dark">
                       <th>ID</th>
-                      <th>Image</th>
+
                       <th>Summary</th>
                       <th>Description</th>
                       <th>Location</th>
@@ -43,13 +57,7 @@
                     furnitures.forEach((furniture, index) => { %>
                     <tr>
                       <td><%= index + 1 %></td>
-                      <td>
-                        <img
-                          src="<%= furniture.image %>"
-                          width="50"
-                          class="img-thumbnail"
-                        />
-                      </td>
+
                       <td><%= furniture.summary %></td>
                       <td><%= furniture.description %></td>
                       <td><%= furniture.location %></td>
@@ -73,5 +81,42 @@
     </div>
   </div>
 </div>
+<!-- Add JavaScript to handle form submission and Reset button -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize Materialize components
+    M.AutoInit();
+
+    // Handle form submission
+    document.getElementById("categoryFilterForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const selectedCategories = Array.from(formData.getAll("category"));
+
+      // Construct the URL with selected categories
+      const categoryParam = selectedCategories.join("&category=");
+      const filteredURL = `/search?category=${categoryParam}`;
+
+      // Redirect to the filtered URL
+      window.location.href = filteredURL;
+    });
+
+    // Handle Reset button click event
+    const resetButton = document.getElementById("resetButton");
+    resetButton.addEventListener("click", () => {
+      // Uncheck all checkboxes
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      // Redirect to the search page (http://localhost:3000/search)
+      window.location.href = '/search';
+    });
+  });
+</script>
+
 
 <%- include('layouts/footer') %>
