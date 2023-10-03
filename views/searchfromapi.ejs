@@ -1,0 +1,72 @@
+<%- include('layouts/header') %>
+<div class="container">
+  <%- include('layouts/searchbar') %>
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-striped text-center">
+            <!-- ... Table headers ... -->
+            <tbody>
+              <!-- Add a placeholder for furniture data -->
+              <tr>
+                <td colspan="9">
+                  <div id="furnitureDataPlaceholder"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add a button to trigger the API request -->
+<button id="fetchDataButton">Fetch Data</button>
+<script>
+    // Function to fetch data from the API and populate the table
+    function fetchData() {
+      fetch('http://localhost:3000/api/search')
+        .then(response => response.json())
+        .then(data => {
+          const furnitures = data.furnitures;
+          const tableBody = document.querySelector('tbody');
+          if (furnitures.length > 0) {
+            let tableHTML = '';
+            furnitures.forEach((furniture, index) => {
+              tableHTML += `
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>
+                    <img src="${furniture.image}" width="50" class="img-thumbnail" />
+                  </td>
+                  <td>${furniture.summary}</td>
+                  <td>${furniture.description}</td>
+                  <td>${furniture.location}</td>
+                  <td>${furniture.category}</td>
+                  <td>${furniture.material}</td>
+                  <td>$${furniture.price}</td>
+                  <td>${new Date(furniture.posted).toDateString()}</td>
+                </tr>
+              `;
+            });
+            tableBody.innerHTML = tableHTML;
+          } else {
+            tableBody.innerHTML = '<tr><td colspan="9"><h1>No data</h1></td></tr>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  
+    // Attach a click event listener to the "Fetch Data" button
+    document.getElementById('fetchDataButton').addEventListener('click', fetchData);
+  
+    // Initial fetch when the page loads
+    fetchData();
+  </script>
+  
+
+<%- include('layouts/footer') %>
