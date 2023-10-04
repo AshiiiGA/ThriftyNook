@@ -8,6 +8,30 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
+router.get('/payment', (req, res) => {
+  res.render('payment');
+})
+
+// Route to render the "Shipping" page
+router.get('/shipping', (req, res) => {
+  res.render('shipping'); // Assuming 'shipping' is the name of your EJS template
+});
+
+// Route to handle the payment submission
+router.post('/submit-payment', (req, res) => {
+  // Handle the payment submission logic here
+  // You can access the form data from req.body, e.g., req.body.name, req.body.card, etc.
+
+  // For demonstration purposes, we'll assume a successful payment submission
+  // In a real application, you should implement your payment processing logic here
+
+  // Send a success response
+  res.status(200).send('Payment successful');
+});
+router.get('/payment-history', (req, res) => {
+  res.render('paymentHistory');
+})
+
 router.get("/search", async (req, res) => {
     try {
       const categories = await catcontroller.getAllCategories(); // Fetch categories
@@ -51,5 +75,9 @@ router.get('/logout', (req, res) => {
     }
   });
 });
+
+function submitFuction(){
+  $( "#yourmodal" ).load( "/showmodalroute" );
+  }
 
 module.exports = router;
