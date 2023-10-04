@@ -52,4 +52,10 @@ router.get('/logout', (req, res) => {
   });
 });
 
+router.get('/forgot-password', (req, res) => {
+  res.render('forgot-password');
+});
+
+router.post('/reset-password', userController.resetPassword);
+
 module.exports = router;
