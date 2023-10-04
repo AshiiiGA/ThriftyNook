@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const catcontroller = require("../controllers/categoryController");
 const furnitureController = require("../controllers/furnitureController");
+const productController = require('../controllers/productController');
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -51,5 +52,12 @@ router.get('/logout', (req, res) => {
     }
   });
 });
+
+router.get('/post-ad', productController.getPostAdPage);
+// Handle the creation of a new product
+router.post('/add-product', productController.createProduct);
+router.get('/user-products/:userId', productController.getUserProducts);
+
+router.get('/myaccount', userController.myaccount);
 
 module.exports = router;
