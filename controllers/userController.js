@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Wishlist = require('../models/Wishlist');
 const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
@@ -43,7 +44,27 @@ exports.login = async (req, res) => {
     }
 
     req.session.userId = user._id;
-    res.redirect('/products');
+    res.redirect('/myaccount');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.myaccount = async (req, res) => {
+  try {
+    if (req.session.userId) {
+      // Use async/await to retrieve the user by ID
+      const user = await User.findById(req.session.userId);
+
+      if (!user) {
+        return res.status(404).send('User not found');
+      }
+
+      res.render('myaccount', { user });
+    } else {
+      res.render('myaccount', { user: null });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
@@ -82,5 +103,33 @@ exports.resetPassword = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+exports.addToWishlist = async (req, res) => {
+  try {
+    // Check if the user is logged in
+    if (!req.session.userId) {
+      return res.send('Please log in to add to your wishlist.'); // Return a message if not logged in
+    }
 
+    const { productId } = req.body;
+    const userId = req.session.userId;
 
+    // Check if the item is already in the user's wishlist
+    const existingItem = await Wishlist.findOne({ userId, productId });
+
+    if (existingItem) {
+      return res.send('This product is already in your wishlist.');
+    }
+
+    const wishlistItem = new Wishlist({
+      userId,
+      productId,
+    });
+
+    await wishlistItem.save();
+
+    res.send('Product added to your wishlist.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
