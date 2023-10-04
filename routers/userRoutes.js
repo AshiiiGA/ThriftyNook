@@ -53,11 +53,19 @@ router.get('/logout', (req, res) => {
   });
 });
 
+
+router.get('/forgot-password', (req, res) => {
+  res.render('forgot-password');
+});
+
+router.post('/reset-password', userController.resetPassword);
+router.get('/myaccount', userController.myaccount);
 router.get('/post-ad', productController.getPostAdPage);
 // Handle the creation of a new product
 router.post('/add-product', productController.createProduct);
 router.get('/user-products/:userId', productController.getUserProducts);
 
-router.get('/myaccount', userController.myaccount);
+
+
 
 module.exports = router;
