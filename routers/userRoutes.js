@@ -10,18 +10,22 @@ router.get('/', (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-    try {
-      const categories = await catcontroller.getAllCategories(); // Fetch categories
-      const query = req.query; // Access query parameters here
-      const furnitures = await furnitureController.searchFurniture(query);
-      res.render("search", { categories, furnitures, query }); // Pass the query as a local variable
-    } catch (err) {
-      res
-        .status(500)
-        .render("error", { message: "Internal server error in route" });
-    }
-  });
-  
+  try {
+    const categories = await catcontroller.getAllCategories(); // Fetch categories
+    const query = req.query; // Access query parameters here
+    const furnitures = await furnitureController.searchFurniture(query);
+
+    // Determine if the user is logged in
+    const user = !!req.session.userId; // Set user to true if req.session.userId exists
+
+    res.render("search", { categories, furnitures, query, user }); // Pass the user variable to the template
+  } catch (err) {
+    res
+      .status(500)
+      .render("error", { message: "Internal server error in route" });
+  }
+});
+
 router.get('/register', (req, res) => {
   res.render('register');
 });
@@ -64,6 +68,25 @@ router.get('/post-ad', productController.getPostAdPage);
 // Handle the creation of a new product
 router.post('/add-product', productController.createProduct);
 router.get('/user-products/:userId', productController.getUserProducts);
+
+
+
+exports.renderSearchPage = async (req, res) => {
+  try {
+    // Assuming you have a way to determine if the user is logged in
+    const user = req.session.userId ? true : false;
+
+    // Fetch the furniture data or perform any other necessary operations
+    const furnitures = await fetchFurnitureData();
+
+    res.render('search', { furnitures, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+router.post('/add-to-wishlist', userController.addToWishlist);
 
 
 

@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Wishlist = require('../models/Wishlist');
 const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
@@ -97,6 +98,37 @@ exports.resetPassword = async (req, res) => {
     // Redirect the user to the login page or a password reset confirmation page
     res.redirect('/login'); // You can customize the redirect URL
 
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.addToWishlist = async (req, res) => {
+  try {
+    // Check if the user is logged in
+    if (!req.session.userId) {
+      return res.send('Please log in to add to your wishlist.'); // Return a message if not logged in
+    }
+
+    const { productId } = req.body;
+    const userId = req.session.userId;
+
+    // Check if the item is already in the user's wishlist
+    const existingItem = await Wishlist.findOne({ userId, productId });
+
+    if (existingItem) {
+      return res.send('This product is already in your wishlist.');
+    }
+
+    const wishlistItem = new Wishlist({
+      userId,
+      productId,
+    });
+
+    await wishlistItem.save();
+
+    res.send('Product added to your wishlist.');
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
