@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const catcontroller = require("../controllers/categoryController");
 const furnitureController = require("../controllers/furnitureController");
+const productController = require('../controllers/productController');
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -52,10 +53,19 @@ router.get('/logout', (req, res) => {
   });
 });
 
+
 router.get('/forgot-password', (req, res) => {
   res.render('forgot-password');
 });
 
 router.post('/reset-password', userController.resetPassword);
+router.get('/myaccount', userController.myaccount);
+router.get('/post-ad', productController.getPostAdPage);
+// Handle the creation of a new product
+router.post('/add-product', productController.createProduct);
+router.get('/user-products/:userId', productController.getUserProducts);
+
+
+
 
 module.exports = router;

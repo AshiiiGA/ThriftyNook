@@ -43,7 +43,27 @@ exports.login = async (req, res) => {
     }
 
     req.session.userId = user._id;
-    res.redirect('/products');
+    res.redirect('/myaccount');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.myaccount = async (req, res) => {
+  try {
+    if (req.session.userId) {
+      // Use async/await to retrieve the user by ID
+      const user = await User.findById(req.session.userId);
+
+      if (!user) {
+        return res.status(404).send('User not found');
+      }
+
+      res.render('myaccount', { user });
+    } else {
+      res.render('myaccount', { user: null });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
