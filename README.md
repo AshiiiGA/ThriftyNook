@@ -32,11 +32,14 @@ Follow these steps to set up the project:
 
 DATABASE_URL: Replace this with the correct database connection string
 PORT: Set the port number where the application will run
+SESSION_SECRET: provide a necessary key which is used as a secret key to sign and encrypt session cookies
 
 Here's an example .env file:
 ```sh
    DATABASE_URL=mongodb://localhost/mydatabase
    PORT=3000
+   SESSION_SECRET=342rf2f8w0fe@#$#vwrwjr23oufwe
+
 ```
 
 ## Start the Application
