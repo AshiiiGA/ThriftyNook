@@ -1,20 +1,36 @@
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Register</h1>
-    <% if (locals.error) { %>
-        <p style="color: red;"><%= locals.error %></p>
-    <% } %>
-    <form method="POST" action="/register">
-        <input type="text" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+<%- include('layouts/header') %>
+<div class="container">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h1 class="text-center">Register</h1>
+            <% if (locals.error) { %>
+                <div class="alert alert-danger"><%= locals.error %></div>
+            <% } %>
+            <form method="POST" action="/register">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="surname" placeholder="Surname" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mobileNumber" placeholder="Mobile Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+<%- include('layouts/footer') %>

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { firstName, surname, mobileNumber, email, password, confirmPassword } = req.body;
 
     // Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
@@ -12,8 +12,12 @@ exports.register = async (req, res) => {
       return res.render('register', { error: 'Email already exists. Please use a different email.' });
     }
 
+    if (password !== confirmPassword) {
+      return res.render('register', { error: 'Passwords do not match. Please try again.' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword });
+    const user = new User({ firstName, surname, mobileNumber, email, password: hashedPassword });
     await user.save();
     res.redirect('/login');
   } catch (error) {
