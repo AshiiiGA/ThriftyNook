@@ -103,7 +103,6 @@ exports.resetPassword = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
 exports.addToWishlist = async (req, res) => {
   try {
     // Check if the user is logged in
