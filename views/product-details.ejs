@@ -3,15 +3,29 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1>Product Details</h1>
-      <h2><%= product.summary %></h2>
-      <img src="/uploads/<%= product.image %>" alt="<%= product.summary %> Image" class="img-fluid">
-      <p><strong>Condition:</strong> <%= product.condition %></p>
-      <p><strong>Description:</strong> <%= product.description %></p>
-      <p><strong>Price:</strong> $<%= product.price.toFixed(2) %></p>
-      <p><strong>Location:</strong> <%= product.location %></p>
-      <p><strong>Material:</strong> <%= product.material %></p>
-      <!-- Add other product details here -->
+      <h2>Product Details</h2>
+      <div style=" padding: 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h3><%= product.summary %></h3>
+        <div style="flex-direction: row; display: flex;">
+          <div style="padding-left: 20px; padding-right: 20px;">
+            <img src="/uploads/<%= product.image %>" alt="<%= product.summary %> Image" class="img-fluid">
+          </div>
+          <div style="padding-top: 20px; padding-left: 50px;">
+            <p><strong>Condition:</strong> <%= product.condition %></p>
+            <p><strong>Description:</strong> <%= product.description %></p>
+            <p><strong>Price:</strong> $<%= product.price.toFixed(2) %></p>
+            <p><strong>Location:</strong> <%= product.location %></p>
+            <p><strong>Material:</strong> <%= product.material %></p>
+            <!-- Add other product details here -->
+            <div style="flex-direction: row; display: flex; justify-content: space-between; overflow: hidden;" >
+              <button style="padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 10px; background-color: #73696c; border: none; color: white; margin: 10px;" class="next-btn" >Add Wishcart</button>
+              <a href="/payment"><button style="padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 10px; background-color: #f1356d; border: none; color: white; margin: 10px;" class="next-btn">Buy Now</button></a>
+            </div>
+          </div>
+      </div>
+      
+       
+      </div>
     </div>
   </div>
 </div>
