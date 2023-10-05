@@ -1,36 +1,39 @@
 <%- include('layouts/header') %>
 <div class="container">
-<form action="/add-product" method="POST">
+  <form action="/add-product" method="POST" enctype="multipart/form-data">
 
-  <label for="condition">Condition:</label>
-  <select name="condition" required>
-    <option value="new">New</option>
-    <option value="old">Old</option>
-  </select>
+    <label for="condition">Condition:</label>
+    <select name="condition" required>
+      <option value="new">New</option>
+      <option value="old">Old</option>
+    </select>
 
-  <label for="summary">Summary (max 50 characters):</label>
-  <input type="text" name="summary" maxlength="50" required>
+    <label for="summary">Summary (max 50 characters):</label>
+    <input type="text" name="summary" maxlength="50" required>
 
-  <label for="description">Description:</label>
-  <textarea name="description" required></textarea>
-  <label for="category">Category:</label>
-  <select name="category" required>
-    <!-- Loop through categories retrieved from the database -->
-    <% categories.forEach(category => { %>
-      <option value="<%= category._id %>"><%= category.name %></option>
-    <% }); %>
-  </select>
+    <label for="description">Description:</label>
+    <textarea name="description" required></textarea>
+    
+    <label for="image">Image:</label>
+    <input type="file" name="image" accept="image/*" required>
 
-  <label for="price">Price:</label>
-  <input type="number" name="price" step="0.01" min="0" required>
+    <label for="category">Category:</label>
+    <select name="category" required>
+      <!-- Loop through categories retrieved from the database -->
+      <% categories.forEach(category => { %>
+        <option value="<%= category._id %>"><%= category.name %></option>
+      <% }); %>
+    </select>
 
-  <label for="location">Location:</label>
-  <input type="text" name="location" required>
+    <label for="price">Price:</label>
+    <input type="number" name="price" step="0.01" min="0" required>
 
-  <label for="material">Material:</label>
-  <input type="text" name="material">
+    <label for="location">Location:</label>
+    <input type="text" name="location" required>
 
-  
+    <label for="material">Material:</label>
+    <input type="text" name="material">
 
-  <button type="submit">Submit</button>
-</form>
+    <button type="submit">Submit</button>
+  </form>
+</div>
