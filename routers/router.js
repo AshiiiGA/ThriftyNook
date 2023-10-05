@@ -8,6 +8,11 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+// Payment
+router.get("/payment", (req, res) => {
+  res.send("payment");
+});
+
 router.get("/search", async (req, res) => {
   try {
     const categories = await catcontroller.getAllCategories(); // Fetch categories
