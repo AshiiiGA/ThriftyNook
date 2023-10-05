@@ -1,0 +1,15 @@
+<!-- views/cart.ejs -->
+
+<h1>Shopping Cart</h1>
+
+<% if (cartItems.length === 0) { %>
+  <p>Your cart is empty.</p>
+<% } else { %>
+  <ul>
+    <% cartItems.forEach(item => { %>
+      <li>
+        Product: <%= item.product.name %> - Quantity: <%= item.quantity %>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>

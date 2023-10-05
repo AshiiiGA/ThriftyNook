@@ -37,27 +37,63 @@
     <nav class="navbar">
       <h1>Thrifty Nook</h1>
       <div class="links">
-        <a href="/">Home</a>
+        <div class="d-flex justify-content-between">
+        <% if (!userSession) { %>
+          <!-- Display the Login button if the user is not logged in -->
+          <a
+            href="/login"
+            style="
+              color: white;
+              background-color: #f1356d;
+              border-radius: 10px;
+              padding: 10px;
+            "
+            >Login</a
+          >
+        <% } else { %>
+          <!-- Display the Home button with a dropdown if the user is logged in -->
+          <div class="dropdown mr-4">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" style="
+                color: white;
+                background-color: #f1356d;
+                border-radius: 10px;
+                padding: 10px;
+                ">
+              Home
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/cart">My Cart</a>
+              <a class="dropdown-item" href="/products">My Products</a>
+              <a class="dropdown-item" href="/changepassword">Change Password</a>
+              <a class="dropdown-item" href="/">Homepage</a>
+            </div>
+          </div>
+          <!-- Display the Logout button if the user is logged in -->
+          <a
+            href="/logout"
+            style="
+              color: white;
+              background-color: #f1356d;
+              border-radius: 10px;
+              padding: 10px;
+            "
+          >
+            Logout
+          </a>
+        <% } %>
         <a
-          href="/login"
+          href="post-ad"
           style="
             color: white;
             background-color: #f1356d;
             border-radius: 10px;
             padding: 10px;
           "
-          >Login</a
         >
-        <a
-          href="/payment"
-          style="
-            color: white;
-            background-color: #f1356d;
-            border-radius: 10px;
-            padding: 10px;
-          "
-        >
-          Buy Now
+          Post a AD
         </a>
+
+      </div>
+      
       </div>
     </nav>

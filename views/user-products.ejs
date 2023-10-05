@@ -1,0 +1,27 @@
+<%- include('layouts/header') %>
+<div class="container">
+
+<h1>Products by User</h1>
+
+<% if (products.length === 0) { %>
+  <p>No products found for this user.</p>
+<% } else { %>
+  <ul>
+    <% products.forEach(product => { %>
+      <li>
+        <h2><%= product.summary %></h2>
+        <p>Description: <%= product.description %></p>
+        <p>Condition: <%= product.condition %></p>
+        <p>Price: $<%= product.price.toFixed(2) %></p>
+        <p>Location: <%= product.location %></p>
+        <p>Material: <%= product.material || 'N/A' %></p>
+        <p>Category: <%= product.category.name %></p>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<a href="/myaccount">Back to My Account</a>
+  
+</div>
+<%- include('layouts/footer') %>

@@ -32,7 +32,10 @@ app.use(
     },
   })
 );
-
+app.use((req, res, next) => {
+  res.locals.userSession = req.session.userId;
+  next();
+});
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 

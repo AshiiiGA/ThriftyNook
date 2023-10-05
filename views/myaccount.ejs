@@ -1,0 +1,20 @@
+<%- include('layouts/header') %>
+<div class="container">
+
+
+<h1>My Account</h1>
+<% if (user) { %>
+  <p>Hello, <%= user.email %>!</p>
+  <!-- Your account content here -->
+
+  
+  <a href="/user-products/<%= user._id %>">View Products</a>
+  <form method="GET" action="/logout">
+    <button type="submit">Logout</button>
+  </form>
+  
+
+<% } else { %>
+  <p>Please register/login to access your account.</p>
+<% } %>
+<%- include('layouts/footer') %>
