@@ -13,6 +13,12 @@
     
     <div class="form-container">
         <h2 class="form-title">Shipping Details</h2>
+        <div>
+            <h3>Product Details</h3>
+            <p>Name: <%= product.summary %></p>
+            <p>Description: <%= product.description %></p>
+            <p>Price: $<%= product.price.toFixed(2) %></p>
+        </div>
         <form action="" class="checkout-form">
             <div class="input-line">
                 <label for="name">Name</label>
@@ -44,8 +50,8 @@
                 }
             </script>
             <div style="flex-direction: row-reverse; padding: 5px;">
-                <a href="./payment"><button type="button" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Back</button></a>
-                <a href="./shipping"><button onclick="openAlert()" type="submit" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Complete the purchase</button></a>
+                <a href="./payment"><button type="button" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white; margin: 10px;" class="next-btn">Back</button></a>
+                <a href="./shipping"><button onclick="openAlert()" type="submit" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white; margin: 10px;" class="next-btn">Complete the purchase</button></a>
             </div>
             
         </form>
