@@ -4,6 +4,7 @@ const userController = require('../controllers/userController');
 const catcontroller = require("../controllers/categoryController");
 const furnitureController = require("../controllers/furnitureController");
 const productController = require('../controllers/productController');
+const { viewProductById, product } = require('../controllers/productController');
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -18,15 +19,12 @@ router.get('/shipping', (req, res) => {
   res.render('shipping'); // Assuming 'shipping' is the name of your EJS template
 });
 
+router.get('/paymentHistory', (req, res) => {
+  res.render('paymentHistory', { product });
+});
+
 // Route to handle the payment submission
 router.post('/submit-payment', (req, res) => {
-  // Handle the payment submission logic here
-  // You can access the form data from req.body, e.g., req.body.name, req.body.card, etc.
-
-  // For demonstration purposes, we'll assume a successful payment submission
-  // In a real application, you should implement your payment processing logic here
-
-  // Send a success response
   res.status(200).send('Payment successful');
 });
 router.get('/payment-history', (req, res) => {
@@ -96,6 +94,7 @@ router.get('/post-ad', productController.getPostAdPage);
 router.post('/add-product', productController.createProduct);
 router.get('/product/:productId', productController.viewProductById);
 router.get('/user-products/:userId', productController.getUserProducts);
+router.get('/payment-history/:productId', productController.viewProductById);
 
 
 
