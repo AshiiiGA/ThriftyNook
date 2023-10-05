@@ -1,0 +1,54 @@
+<%- include('layouts/header') %>
+<body>
+    <!-- <div class="progress-checkout-container">
+        <div class="progress-step-container">
+            <div class="step-check"></div>
+            <span class="step-title">Payment</span>
+        </div>
+        <div class="progress-step-container">
+            <div class="step-check"></div>
+            <span class="step-title">Shipping</span>
+        </div>
+    </div> -->
+    
+    <div class="form-container">
+        <h2 class="form-title">Shipping Details</h2>
+        <form action="" class="checkout-form">
+            <div class="input-line">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Your name and surname">
+            </div>
+            <div class="input-line">
+                <label for="name">Address</label>
+                <input type="text" name="address" id="address" placeholder="No, Street, suburb, State">
+            </div>
+            <div class="input-line">
+                <label for="name">Contact Number</label>
+                <input type="text" name="mobile" id="mobile" placeholder="0414 1000 100">
+            </div>
+            <div class="input-container">
+                <label for="name">Available Movers</label>
+                    <input type="radio" id="html" value="html">
+                    <label for="Jack">Jack</label><br>
+                    <input type="radio" id="Mason" value="Mason">
+                    <label for="Mason">Mason</label><br>
+                    <input type="radio" id="Fred" value="Fred">
+                    <label for="Fred">Fred</label>   
+            </div>
+            <script>
+                function openAlert() {
+                    window.alert('Payment submitted successfully. Thank You for shopping with us!!!');
+                }
+                function redirectToHomePage() {
+                    window.location.href = '/';
+                }
+            </script>
+            <div style="flex-direction: row-reverse; padding: 5px;">
+                <a href="./payment"><button type="button" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Back</button></a>
+                <a href="./shipping"><button onclick="openAlert()" type="submit" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Complete the purchase</button></a>
+            </div>
+            
+        </form>
+    </div>
+</body>
+
