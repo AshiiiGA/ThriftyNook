@@ -42,6 +42,7 @@ app.set('view engine', 'ejs');
 // Set the views directory
 app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // Import and use userRoutes
 const userRoutes = require('./routers/userRoutes');

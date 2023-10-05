@@ -67,6 +67,7 @@ router.get('/myaccount', userController.myaccount);
 router.get('/post-ad', productController.getPostAdPage);
 // Handle the creation of a new product
 router.post('/add-product', productController.createProduct);
+router.get('/:productId', productController.viewProductById);
 router.get('/user-products/:userId', productController.getUserProducts);
 
 
