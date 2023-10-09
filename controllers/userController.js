@@ -1,6 +1,9 @@
 const User = require('../models/User');
 const Wishlist = require('../models/Wishlist');
+<<<<<<< HEAD
 const Cart = require('../models/cart');
+=======
+>>>>>>> a8f4f4c7714756a28610f6ad0e8ec72228e932e7
 const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
@@ -104,7 +107,10 @@ exports.resetPassword = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> a8f4f4c7714756a28610f6ad0e8ec72228e932e7
 exports.addToWishlist = async (req, res) => {
   try {
     // Check if the user is logged in
@@ -135,6 +141,7 @@ exports.addToWishlist = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+<<<<<<< HEAD
 exports.addToCart = async (req, res) => {
   try {
     // Check if the user is logged in
@@ -175,3 +182,5 @@ exports.getCartItems = async (userId) => {
     throw err;
   }
 }
+=======
+>>>>>>> a8f4f4c7714756a28610f6ad0e8ec72228e932e7

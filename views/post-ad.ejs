@@ -1,36 +1,43 @@
 <%- include('layouts/header') %>
 <div class="container">
-<form action="/add-product" method="POST">
-
-  <label for="condition">Condition:</label>
-  <select name="condition" required>
-    <option value="new">New</option>
-    <option value="old">Old</option>
-  </select>
-
-  <label for="summary">Summary (max 50 characters):</label>
-  <input type="text" name="summary" maxlength="50" required>
-
-  <label for="description">Description:</label>
-  <textarea name="description" required></textarea>
-  <label for="category">Category:</label>
-  <select name="category" required>
-    <!-- Loop through categories retrieved from the database -->
-    <% categories.forEach(category => { %>
-      <option value="<%= category._id %>"><%= category.name %></option>
-    <% }); %>
-  </select>
-
-  <label for="price">Price:</label>
-  <input type="number" name="price" step="0.01" min="0" required>
-
-  <label for="location">Location:</label>
-  <input type="text" name="location" required>
-
-  <label for="material">Material:</label>
-  <input type="text" name="material">
-
+  <h3  style="display: flex; justify-content: center;">Poat an Ad</h3>
+  <div style="display: flex; justify-content: center;">
+    
+    <form action="/add-product" method="POST" enctype="multipart/form-data" style="width: 700px;">
+      <label for="condition">Condition:</label>
+        <select name="condition" required>
+          <option value="new">New</option>
+          <option value="old">Old</option>
+        </select>
+        <br>
+        <label for="summary">Summary (max 50 characters):</label>
+        <input style="height: 100px;" type="text" name="summary" maxlength="50" required>
+        <br>
+        <label for="description">Description:</label><br>
+        <input style="height: 100px;" type="text" name="summary" maxlength="50" required>
+        <br>
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <br>
+        <label for="category">Category:</label>
+        <select name="category" required>
+          <!-- Loop through categories retrieved from the database -->
+          <% categories.forEach(category => { %>
+            <option value="<%= category._id %>"><%= category.name %></option>
+          <% }); %>
+        </select>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" name="price" step="0.01" min="0" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" name="location" required>
+        <br>
+        <label for="material">Material:</label>
+        <input type="text" name="material">
+    
+        <button style="padding: 5px; margin-top: 10px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" type="submit">Submit</button>
+      </form>
+  </div>
   
-
-  <button type="submit">Submit</button>
-</form>
+</div>

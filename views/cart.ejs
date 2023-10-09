@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%- include('layouts/header') %>
 <div class="container">
     <%- include('layouts/searchbar') %>
@@ -5,3 +6,20 @@
     <%- include('layouts/cartList') %>
 </div>
 <%- include('layouts/footer') %>
+=======
+<!-- views/cart.ejs -->
+
+<h1>Shopping Cart</h1>
+
+<% if (cartItems.length === 0) { %>
+  <p>Your cart is empty.</p>
+<% } else { %>
+  <ul>
+    <% cartItems.forEach(item => { %>
+      <li>
+        Product: <%= item.product.name %> - Quantity: <%= item.quantity %>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+>>>>>>> a8f4f4c7714756a28610f6ad0e8ec72228e932e7

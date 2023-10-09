@@ -32,11 +32,13 @@ const productSchema = new mongoose.Schema({
     ref: 'Category',
     required: true,
   },
-  // Reference to the user who posted the product
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  image: {
+    type: String, // Store the image ID or filename
   },
 });
 
