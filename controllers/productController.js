@@ -62,7 +62,7 @@ exports.createProduct = async (req, res) => {
 };
 
 // Get products by a specific user's userId
-exports.getUserProducts = async (req, res) => {
+exports.getProductsByUserID = async (req, res) => {
   try {
     const userId = req.params.userId;
 

@@ -29,9 +29,9 @@
         </form>
       </div>
 
-      <!-- Right Column for Furniture Table -->
+      <!-- Right Column for Product Table -->
       <div class="col s12 m8">
-        <table class="table table-striped" id="furnitureTable">
+        <table class="table table-striped" id="productTable">
           <thead>
             <tr>
               <th>ID</th>
@@ -45,29 +45,28 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Furniture listings go here -->
-            <% if (furnitures.length > 0) { %>
-              <% furnitures.forEach((furniture, index) => { %>
+            <!-- Products listings go here -->
+            <% if (products.length > 0) { %>
+              <% products.forEach((product, index) => { %>
                 <tr>
                   <td><%= index + 1 %></td>
-                  <td><%= furniture.summary %></td>
-                  <td><%= furniture.description %></td>
-                  <td><%= furniture.location %></td>
-                  <td><%= furniture.material %></td>
-                  <td>$<%= furniture.price.toFixed(2) %></td>
-                  <td><%= furniture.posted.toDateString() %></td>
+                  <td><%= product.summary %></td>
+                  <td><%= product.description %></td>
+                  <td><%= product.location %></td>
+                  <td><%= product.material %></td>
+                  <td>$<%= product.price.toFixed(2) %></td>
+                  <td><%= product.posted.toDateString() %></td>
                   <td>
-                    
-                      <!-- Add to Cart button -->
-                      <form action="/add-to-wishlist" method="POST">
-                        <input type="hidden" name="productId" value="<%= furniture._id %>">
-                        <button type="submit" class="btn btn-primary">Add to Cart</button>
-                      </form>
-                      <!-- View More Details button -->
-                      <form action="/view-details" method="POST">
-                        <input type="hidden" name="productId" value="<%= furniture._id %>">
-                        <button type="submit" class="btn btn-info">View More Details</button>
-                      </form>                    
+                    <!-- Add to Cart button -->
+                    <form action="/add-to-wishlist" method="POST">
+                      <input type="hidden" name="productId" value="<%= product._id %>">
+                      <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                    <!-- View More Details button -->
+                    <form action="/view-details" method="POST">
+                      <input type="hidden" name="productId" value="<%= product._id %>">
+                      <button type="submit" class="btn btn-info">View More Details</button>
+                    </form>
                   </td>
                 </tr>
               <% }) %>
@@ -82,60 +81,47 @@
     </div>
   </div>
 
-<!-- Include jQuery and DataTables JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"
-    integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/v/bs4/dt-1.13.6/datatables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        const categoryFilterForm = document.getElementById("categoryFilterForm");
-        const resetButton = document.getElementById("resetButton");
+  <!-- Include jQuery and DataTables JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- ... Include other scripts as before ... -->
+  <script>
+      $(document).ready(function () {
+          const categoryFilterForm = document.getElementById("categoryFilterForm");
+          const resetButton = document.getElementById("resetButton");
 
-        // Initialize DataTables
-        $("#furnitureTable").DataTable({
-            order: [0, 'desc']
-        });
+          // Initialize DataTables
+          $("#productTable").DataTable({
+              order: [0, 'desc']
+          });
 
-        // Handle form submission
-        categoryFilterForm.addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent default form submission
+          // Handle form submission
+          categoryFilterForm.addEventListener("submit", function (e) {
+              e.preventDefault(); // Prevent default form submission
 
-            const form = e.target;
-            const formData = new FormData(form);
-            const selectedCategories = Array.from(formData.getAll("category"));
+              const form = e.target;
+              const formData = new FormData(form);
+              const selectedCategories = Array.from(formData.getAll("category"));
 
-            // Construct the URL with selected categories
-            const categoryParam = selectedCategories.join("&category=");
-            const filteredURL = `/search?category=${categoryParam}`;
+              // Construct the URL with selected categories
+              const categoryParam = selectedCategories.join("&category=");
+              const filteredURL = `/search?category=${categoryParam}`;
 
-            // Redirect to the filtered URL
-            window.location.href = filteredURL;
-        });
+              // Redirect to the filtered URL
+              window.location.href = filteredURL;
+          });
 
-        // Handle Reset button click event
-        resetButton.addEventListener("click", () => {
-            // Uncheck all checkboxes
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
+          // Handle Reset button click event
+          resetButton.addEventListener("click", () => {
+              // Uncheck all checkboxes
+              const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+              checkboxes.forEach(checkbox => {
+                  checkbox.checked = false;
+              });
 
-            // Redirect to the search page
-            window.location.href = '/search';
-        });
-    });
-</script>
-
+              // Redirect to the search page
+              window.location.href = '/search';
+          });
+      });
+  </script>
 </body>
 </html>

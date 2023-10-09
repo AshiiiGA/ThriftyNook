@@ -1,12 +1,19 @@
-const Furniture = require("../models/furnitureModel");
+const Product = require("../models/Product");
+const Category = require("../models/categoryModel");
 
-// Function to search and list furniture with category filter
 async function searchFurniture(query) {
   try {
-    const categoryFilter = query.category ? { category: query.category } : {}; // Filter by category if provided
-    const furnitures = await Furniture.find(categoryFilter);
+    const categoryNames = Array.isArray(query.category) ? query.category : [query.category];
 
-    return furnitures;
+    // Find the category IDs corresponding to the provided category names
+    const categories = await Category.find({ name: { $in: categoryNames } });
+
+    const categoryIds = categories.map(category => category._id);
+
+    // Use the category IDs to filter products
+    const products = await Product.find({ category: { $in: categoryIds } });
+
+    return products;
   } catch (err) {
     console.error("Error in searchFurniture:", err);
     throw err;

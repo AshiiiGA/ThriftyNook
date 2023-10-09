@@ -29,16 +29,21 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: 'Category', // Assuming you have a Category model
     required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User', // Assuming you have a User model
     required: true,
   },
   image: {
     type: String, // Store the image ID or filename
+  },
+  posted: {
+    type: Date,
+    required: true,
+    default: Date.now,
   },
 });
 

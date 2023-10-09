@@ -4,7 +4,32 @@ const userController = require('../controllers/userController');
 const catcontroller = require("../controllers/categoryController");
 const furnitureController = require("../controllers/furnitureController");
 const productController = require('../controllers/productController');
-const { viewProductById, product } = require('../controllers/productController');
+const middlewareController = require('../controllers/middlewareController');
+const Category = require('../models/categoryModel')
+// Middleware function to check if the user is logged in
+// this can be used for the all the routes that require authentication
+function ensureLoggedIn(req, res, next) {
+  if (req.session.userId) {
+    // If the user is authenticated (logged in), proceed to the next middleware/route
+    return next();
+  } else {
+    // If the user is not authenticated, redirect them to the login page or perform any desired action
+    res.redirect('/login'); // Replace '/login' with your actual login page route
+  }
+}
+// Middleware function to check if the requested user ID matches the current user's ID
+function ensureRequestedUser(req, res, next) {
+  const requestedUserId = req.params.userId;
+  const currentUserId = req.session.userId;
+
+  if (requestedUserId === currentUserId) {
+    // If the requested user ID matches the current user's ID, proceed to the next middleware/route
+    return next();
+  } else {
+    // If the user IDs do not match, display an error message and prevent access
+    res.status(403).render('error', { message: 'Access Denied: You do not have permission to view this page.' });
+  }
+}
 
 router.get('/', (req, res) => {
   res.render('index');
@@ -30,22 +55,8 @@ router.post('/submit-payment', (req, res) => {
 router.get('/payment-history', (req, res) => {
   res.render('paymentHistory');
 })
-router.get("/search", async (req, res) => {
-  try {
-    const categories = await catcontroller.getAllCategories(); // Fetch categories
-    const query = req.query; // Access query parameters here
-    const furnitures = await furnitureController.searchFurniture(query);
 
-    // Determine if the user is logged in
-    const user = !!req.session.userId; // Set user to true if req.session.userId exists
 
-    res.render("search", { categories, furnitures, query, user }); // Pass the user variable to the template
-  } catch (err) {
-    res
-      .status(500)
-      .render("error", { message: "Internal server error in route" });
-  }
-});
 
 router.get('/register', (req, res) => {
   res.render('register');
@@ -88,15 +99,29 @@ router.get('/forgot-password', (req, res) => {
 });
 
 router.post('/reset-password', userController.resetPassword);
-router.get('/myaccount', userController.myaccount);
-router.get('/post-ad', productController.getPostAdPage);
+router.get('/myaccount',ensureLoggedIn, userController.myaccount);
+router.get('/post-ad', ensureLoggedIn, productController.getPostAdPage);
 // Handle the creation of a new product
 router.post('/add-product', productController.createProduct);
 router.get('/product/:productId', productController.viewProductById);
-router.get('/user-products/:userId', productController.getUserProducts);
+router.get('/user-products/:userId', ensureLoggedIn, ensureRequestedUser, productController.getProductsByUserID);
 router.get('/payment-history/:productId', productController.viewProductById);
+router.post('/add-to-wishlist', userController.addToWishlist);
 
+router.get("/search", async (req, res) => {
+  try {
+    const categories = await catcontroller.getAllCategories(); // Fetch categories
+    const query = req.query; // Access query parameters here
+    const products = await furnitureController.searchFurniture(query); // Use searchFurniture function
 
+    // Determine if the user is logged in
+    const user = !!req.session.userId; // Set user to true if req.session.userId exists
+
+    res.render("search", { categories, products, query, user }); // Pass the user variable and products to the template
+  } catch (err) {
+    res.status(500).render("error", { message: "Internal server error in route" });
+  }
+});
 
 exports.renderSearchPage = async (req, res) => {
   try {
@@ -112,7 +137,5 @@ exports.renderSearchPage = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
-router.post('/add-to-wishlist', userController.addToWishlist);
 
 module.exports = router;
