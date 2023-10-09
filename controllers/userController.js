@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const Wishlist = require('../models/Wishlist');
+const Cart = require('../models/cart');
 const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
@@ -102,3 +104,74 @@ exports.resetPassword = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+
+exports.addToWishlist = async (req, res) => {
+  try {
+    // Check if the user is logged in
+    if (!req.session.userId) {
+      return res.send('Please log in to add to your wishlist.'); // Return a message if not logged in
+    }
+
+    const { productId } = req.body;
+    const userId = req.session.userId;
+
+    // Check if the item is already in the user's wishlist
+    const existingItem = await Wishlist.findOne({ userId, productId });
+
+    if (existingItem) {
+      return res.send('This product is already in your wishlist.');
+    }
+
+    const wishlistItem = new Wishlist({
+      userId,
+      productId,
+    });
+
+    await wishlistItem.save();
+
+    res.send('Product added to your wishlist.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+exports.addToCart = async (req, res) => {
+  try {
+    // Check if the user is logged in
+    if (!req.session.userId) {
+      return res.send('Please log in to add to your cart.'); // Return a message if not logged in
+    }
+
+    const { productId } = req.body;
+    const userId = req.session.userId;
+
+    // Check if the item is already in the user's wishlist
+    const existingItem = await Cart.findOne({ userId, productId });
+
+    if (existingItem) {
+      return res.send('This product is already in your cart.');
+    }
+
+    const cartItem = new Cart({
+      userId,
+      productId,
+    });
+
+    await cartItem.save();
+
+    res.send('Product added to your cart.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.getCartItems = async (userId) => {
+  try {
+    const cartItems = await Cart.find({ userId: userId });
+    return cartItems;
+  } catch (err) {
+    console.error('Error in getCartItems:', err); // Log the error
+    throw err;
+  }
+}

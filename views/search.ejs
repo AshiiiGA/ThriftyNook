@@ -42,7 +42,6 @@
                   <thead>
                     <tr class="table-dark">
                       <th>ID</th>
-
                       <th>Summary</th>
                       <th>Description</th>
                       <th>Location</th>
@@ -50,29 +49,42 @@
                       <th>Material</th>
                       <th>Price</th>
                       <th>Posted</th>
+                      <th>Action</th> <!-- New column for the "Add to Cart" button -->
                     </tr>
                   </thead>
                   <tbody>
-                    <% if (furnitures.length > 0) { %> <%
-                    furnitures.forEach((furniture, index) => { %>
-                    <tr>
-                      <td><%= index + 1 %></td>
-
-                      <td><%= furniture.summary %></td>
-                      <td><%= furniture.description %></td>
-                      <td><%= furniture.location %></td>
-                      <td><%= furniture.category %></td>
-                      <td><%= furniture.material %></td>
-                      <td>$<%= furniture.price %></td>
-                      <td><%= furniture.posted.toDateString() %></td>
-                    </tr>
-                    <% }) %> <% } else { %>
-                    <tr>
-                      <td colspan="9"><h1>No data</h1></td>
-                    </tr>
+                    <% if (furnitures.length > 0) { %>
+                      <% furnitures.forEach((furniture, index) => { %>
+                        <tr>
+                          <td><%= index + 1 %></td>
+                          <td><%= furniture.summary %></td>
+                          <td><%= furniture.description %></td>
+                          <td><%= furniture.location %></td>
+                          <td><%= furniture.category.name %></td> <!-- Display category name -->
+                          <td><%= furniture.material %></td>
+                          <td>$<%= furniture.price.toFixed(2) %></td>
+                          <td><%= furniture.posted.toDateString() %></td>
+                          <td>
+                            <% if (user) { %>
+                              <!-- Check if the user is logged in before showing the button -->
+                              <form action="/add-to-cart" method="POST">
+                                <input type="hidden" name="productId" value="<%= furniture._id %>">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                              </form>
+                            <% } else { %>
+                              <p>Please log in to add to your wishlist.</p>
+                            <% } %>
+                          </td>
+                        </tr>
+                      <% }) %>
+                    <% } else { %>
+                      <tr>
+                        <td colspan="10"><h1>No data</h1></td>
+                      </tr>
                     <% } %>
                   </tbody>
                 </table>
+                
               </div>
             </div>
           </div>

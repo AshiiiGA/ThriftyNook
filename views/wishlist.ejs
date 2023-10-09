@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+</head>
+<body>
+
+    <h1>Wishlist</h1>
+    <% if(wishlistItems.length > 0) { %>
+        <ul>
+            <% wishlistItems.forEach(item => { %>
+                <li>
+                    <h2><%= item.productId %></h2>
+                    <p>Price: <%= item.productId %></p>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>Your wishlist is empty.</p>
+    <% } %>
+</body>
+</html>

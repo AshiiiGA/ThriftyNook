@@ -7,7 +7,8 @@
     "material": "Wood",
     "price": 499.99,
     "image": "https://example.com/dining-table.jpg",
-    "posted": "2023-09-15"
+    "posted": "2023-09-15",
+    "IsAddedToCart": true
   },
   {
     "summary": "Comfy Leather Sofa",

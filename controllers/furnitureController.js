@@ -13,6 +13,19 @@ async function searchFurniture(query) {
   }
 }
 
+// Function to search and list furniture with category filter
+async function getAllFurniture() {
+  try {
+    //const categoryFilter = query.category ? { category: query.category } : {}; // Filter by category if provided
+    const furnitures = await Furniture.find();
+
+    return furnitures;
+  } catch (err) {
+    console.error("Error in getAllFurniture:", err);
+    throw err;
+  }
+}
+
 module.exports = {
-  searchFurniture,
+  searchFurniture,getAllFurniture
 };

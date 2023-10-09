@@ -1,0 +1,44 @@
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <% const number = -1; // You can change this value as needed %>
+          <table class="table table-striped text-center">
+            <thead>
+              <tr class="table-dark">
+                <th>ID</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Material</th>
+                <th>Price</th>
+                <th>Posted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (productsDetails.length > 0) { %>
+                <% productsDetails.forEach((furniture, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= furniture.summary %></td>
+                    <td><%= furniture.description %></td>
+                    <td><%= furniture.location %></td>
+                    <td><%= furniture.category.name %></td> <!-- Display category name -->
+                    <td><%= furniture.material %></td>
+                    <td>$<%= furniture.price.toFixed(2) %></td>
+                    <td><%= furniture.posted.toDateString() %></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="10"><h1>No data</h1></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>

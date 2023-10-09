@@ -55,7 +55,7 @@ exports.createProduct = async (req, res) => {
 // Get products by a specific user's userId
 exports.getUserProducts = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.session.userId;
 
     // Find products that are associated with the specified userId and populate the 'category' field
     const products = await Product.find({ user: userId }).populate('category');
@@ -67,3 +67,4 @@ exports.getUserProducts = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+

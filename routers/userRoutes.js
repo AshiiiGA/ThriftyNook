@@ -10,18 +10,22 @@ router.get('/', (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-    try {
-      const categories = await catcontroller.getAllCategories(); // Fetch categories
-      const query = req.query; // Access query parameters here
-      const furnitures = await furnitureController.searchFurniture(query);
-      res.render("search", { categories, furnitures, query }); // Pass the query as a local variable
-    } catch (err) {
-      res
-        .status(500)
-        .render("error", { message: "Internal server error in route" });
-    }
-  });
-  
+  try {
+    const categories = await catcontroller.getAllCategories(); // Fetch categories
+    const query = req.query; // Access query parameters here
+    const furnitures = await furnitureController.searchFurniture(query);
+
+    // Determine if the user is logged in
+    const user = !!req.session.userId; // Set user to true if req.session.userId exists
+
+    res.render("search", { categories, furnitures, query, user }); // Pass the user variable to the template
+  } catch (err) {
+    res
+      .status(500)
+      .render("error", { message: "Internal server error in route" });
+  }
+});
+
 router.get('/register', (req, res) => {
   res.render('register');
 });
@@ -66,6 +70,53 @@ router.post('/add-product', productController.createProduct);
 router.get('/user-products/:userId', productController.getUserProducts);
 
 
+
+exports.renderSearchPage = async (req, res) => {
+  try {
+    // Assuming you have a way to determine if the user is logged in
+    const user = req.session.userId ? true : false;
+
+    // Fetch the furniture data or perform any other necessary operations
+    const furnitures = await fetchFurnitureData();
+
+    res.render('search', { furnitures, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+router.get('/cart',async (req,res) => {
+  try{
+    cartItems = await userController.getCartItems(req.session.userId);
+    products = await furnitureController.getAllFurniture();
+    productIds = []
+    cartItems.forEach((item, index) => {
+      productIds.push(item.productId.toString());
+    });
+    console.log(productIds,cartItems);
+    productsDetails=[]
+    products.forEach((item, index) => {
+      itemId = item._id.toString()
+      console.log(itemId);
+      if (productIds.includes(itemId)){
+      productsDetails.push(item);
+      }
+    });
+    console.log(productsDetails);
+    user = req.session.userId;
+    res.render('cart',{ productsDetails})
+
+  }
+catch (error) {
+  console.error(error);
+  res.status(500).send('Internal Server Error');
+}
+});
+
+router.post('/add-to-wishlist', userController.addToWishlist);
+
+router.post('/add-to-cart', userController.addToCart);
 
 
 module.exports = router;
