@@ -92,7 +92,7 @@ exports.viewProductById = async (req, res) => {
 
     // Render a view to display the product details
     // res.render('product-details', { product });
-    res.render('paymentHistory', { product });
+    res.render('product-details', { product });
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');

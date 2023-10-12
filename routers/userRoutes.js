@@ -6,6 +6,7 @@ const furnitureController = require("../controllers/furnitureController");
 const productController = require('../controllers/productController');
 const middlewareController = require('../controllers/middlewareController');
 const Category = require('../models/categoryModel')
+paymentController = require('../controllers/payment.controller')
 // Middleware function to check if the user is logged in
 // this can be used for the all the routes that require authentication
 function ensureLoggedIn(req, res, next) {
@@ -35,9 +36,9 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
-router.get('/payment', (req, res) => {
-  res.render('payment');
-})
+// Route to view product details and potentially make a payment
+router.get('/payment/:productId', ensureLoggedIn, paymentController.viewProductDetails);
+
 
 // Route to render the "Shipping" page
 router.get('/shipping', (req, res) => {
@@ -52,9 +53,6 @@ router.get('/paymentHistory', (req, res) => {
 router.post('/submit-payment', (req, res) => {
   res.status(200).send('Payment successful');
 });
-router.get('/payment-history', (req, res) => {
-  res.render('paymentHistory');
-})
 
 
 

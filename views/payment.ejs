@@ -1,67 +1,33 @@
 <%- include('layouts/header') %>
-<body>
-    <!-- <div class="progress-checkout-container">
-        <div class="progress-step-container">
-            <div class="step-check"></div>
-            <span class="step-title">Payment</span>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Payment Details</h2>
+      <!-- Display product details -->
+      <h3><%= product.summary %></h3>
+      <p><strong>Price:</strong> $<%= product.price.toFixed(2) %></p>
+      
+      <!-- Shipping information form -->
+      <form action="/confirm-payment" method="POST">
+        <div class="form-group">
+          <label for="shippingName">Shipping Name</label>
+          <input type="text" class="form-control" id="shippingName" name="shippingName" required>
         </div>
-        <div class="progress-step-container">
-            <div class="step-check"></div>
-            <span class="step-title">Shipping</span>
+        <div class="form-group">
+          <label for="shippingAddress">Shipping Address</label>
+          <textarea class="form-control" id="shippingAddress" name="shippingAddress" rows="3" required></textarea>
         </div>
-    </div> -->
-    <div class="form-container">
-        <h2 class="form-title">Payment Details</h2>
-        <form id="payment-form" action="/submit-payment" method="POST" class="checkout-form">
-            <div class="input-line">
-                <label for="name">Name on the card</label>
-                <input type="text" name="name" id="name" placeholder="Your name and surname">
-            </div>
-            <div class="input-line">
-                <label for="name">Card number</label>
-                <input type="text" name="card" id="card" placeholder="1111-2222-3333-4444">
-            </div>
-            <div class="input-container">
-                <div class="input-line">
-                    <label for="date">Expiring Date</label>
-                    <input type="text" name="date" id="date" placeholder="01/25">
-                </div>
-                <div class="input-line">
-                    <label for="date">CVC</label>
-                    <input type="text" name="cvc" id="cvc" placeholder="***">
-                </div>
-            </div>
-            <!-- <a href="/shipping"><button type="submit" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Next</button></a> -->
-            <button type="submit" style="padding: 5px; border-radius: 10px; background-color: #f1356d; border: none; color: white;" class="next-btn">Next</button>
-        </form>
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input type="text" class="form-control" id="contactNumber" name="contactNumber" required>
+        </div>
+        <!-- Add other fields as needed -->
+
+        <button type="submit" class="btn btn-primary">Confirm</button>
+      </form>
     </div>
+  </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const paymentForm = document.getElementById('payment-form');
-            paymentForm.addEventListener('submit', function (e) {
-                e.preventDefault(); // Prevent the default form submission
-
-                // Here, you can send the form data to the server using AJAX or fetch.
-                // Example using fetch:
-                fetch('/submit-payment', {
-                    method: 'POST',
-                    body: new FormData(paymentForm), // Send form data
-                })
-                .then(response => {
-                    // Handle the response as needed
-                    if (response.ok) {
-                        // If the server indicates success, navigate to the "Shipping" page
-                        window.location.href = '/shipping';
-                    } else {
-                        // Handle errors or show a message
-                        console.error('Payment submission failed.');
-                    }
-                })
-                .catch(error => {
-                    console.error('An error occurred while submitting the payment:', error);
-                });
-            });
-        });
-    </script>
-</body>
+<%- include('layouts/footer') %>

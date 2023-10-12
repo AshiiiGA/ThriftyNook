@@ -19,7 +19,9 @@
             <!-- Add other product details here -->
             <div style="flex-direction: row; display: flex; justify-content: space-between; overflow: hidden;" >
               <button style="padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 10px; background-color: #73696c; border: none; color: white; margin: 10px;" class="next-btn" >Add Wishcart</button>
-              <a href="/payment"><button style="padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 10px; background-color: #f1356d; border: none; color: white; margin: 10px;" class="next-btn">Buy Now</button></a>
+              <a href="/payment/<%= product._id %>">
+                <button style="padding: 5px; padding-left: 10px; padding-right: 10px; border-radius: 10px; background-color: #f1356d; border: none; color: white; margin: 10px;" class="next-btn">Buy Now</button>
+              </a>              
             </div>
           </div>
       </div>
